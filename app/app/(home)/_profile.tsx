@@ -9,7 +9,7 @@ export const Profile = () => {
   const { data } = useGetProfile();
 
   return (
-    <div className="w-full bg-muted border-b-4 border-b-primary mb-6 p-6">
+    <div className="w-full bg-muted border-b-4 border-b-primary mb-6 p-6 flex justify-between">
       <div className="flex items-center gap-4">
         <Avatar className="size-14">
           <AvatarImage src={data?.data.image} alt={data?.data.name} />
