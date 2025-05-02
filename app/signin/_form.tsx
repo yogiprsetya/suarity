@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { Button } from '~/frontend/components/ui/button';
+import { Button } from '~/components/ui/button';
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '~/frontend/components/ui/card';
+} from '~/components/ui/card';
 import { signIn } from 'next-auth/react';
 
 export const LoginForm = () => {

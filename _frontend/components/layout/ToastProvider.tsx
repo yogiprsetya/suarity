@@ -1,17 +1,20 @@
 'use client';
 
-import dynamic from 'next/dynamic';
+import {
+  Toast,
+  ToastClose,
+  ToastDescription,
+  ToastProvider as ToasterBase,
+  ToastTitle,
+  ToastViewport
+} from '~/components/ui/toast';
 import { useToast } from '~/hooks/useToast';
-
-const Toast = dynamic(() => import('~/components/ui/toast').then((mod) => mod), {
-  ssr: false
-});
 
 export const ToastProvider = () => {
   const { toasts } = useToast();
 
   return (
-    <Toast.defaultProps>
+    <ToasterBase>
       {toasts.map(({ id, title, description, action, ...props }) => {
         return (
           <Toast key={id} {...props}>
@@ -26,6 +29,6 @@ export const ToastProvider = () => {
       })}
 
       <ToastViewport />
-    </Toast.defaultProps>
+    </ToasterBase>
   );
 };

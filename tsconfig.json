@@ -22,6 +22,7 @@
       "api-lib/*": ["./app/api/_lib/*"],
       "~/components/*": ["./_frontend/components/*"],
       "~/hooks/*": ["./_frontend/hooks/*"],
+      "~/services/*": ["./_frontend/services/*"],      
       "~/model/*": ["./model/*"]
     }
   },

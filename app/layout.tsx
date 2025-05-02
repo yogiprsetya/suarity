@@ -4,7 +4,6 @@ import { ThemeProvider } from 'next-themes';
 import { NextAuthProvider } from '~/components/layout/NextAuthProvider';
 import { SWRProvider } from '~/components/layout/SWRProvider';
 import { Gabarito } from 'next/font/google';
-import { QueryClientProvider } from '~/_frontend/components/layout/QueryClientProvider';
 
 const gabarito = Gabarito({
   subsets: ['latin'],
@@ -29,9 +28,7 @@ export default function RootLayout({
         <div className="max-w-5xl w-full mx-auto px-4">
           <ThemeProvider attribute="class" defaultTheme="light">
             <SWRProvider>
-              <NextAuthProvider>
-                <QueryClientProvider>{children}</QueryClientProvider>
-              </NextAuthProvider>
+              <NextAuthProvider>{children}</NextAuthProvider>
             </SWRProvider>
           </ThemeProvider>
         </div>

@@ -3,7 +3,7 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   darkMode: ['class'],
-  content: ['./.frontend/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
+  content: ['./_frontend/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
   theme: {
     fontFamily: {
       mono: 'var(--font-gabarito)'
