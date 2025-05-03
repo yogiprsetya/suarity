@@ -1,4 +1,12 @@
-import { text, timestamp, pgTable, integer, primaryKey, pgEnum } from 'drizzle-orm/pg-core';
+import {
+  text,
+  timestamp,
+  pgTable,
+  integer,
+  primaryKey,
+  pgEnum,
+  varchar
+} from 'drizzle-orm/pg-core';
 import type { AdapterAccountType } from '@auth/core/adapters';
 
 export const userTypeEnum = pgEnum('user_type', ['solo', 'agency']);
@@ -11,8 +19,8 @@ export const users = pgTable('user', {
   email: text('email').notNull(),
   emailVerified: timestamp('emailVerified', { mode: 'date' }),
   image: text('image').notNull(),
-  bio: text('bio'),
-  username: text('username').notNull().default(''),
+  bio: varchar('bio', { length: 250 }).notNull().default(''),
+  username: text('username').unique().notNull().default(''),
   type: userTypeEnum('type').notNull().default('solo'),
   createdAt: timestamp('created_at').defaultNow()
 });

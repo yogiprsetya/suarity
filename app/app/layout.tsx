@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { AppNavbar } from './app-navbar';
 
 const ToastProvider = dynamic(
   () => import('~/components/layout/ToastProvider').then((mod) => mod.ToastProvider),
@@ -17,6 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
+      <AppNavbar />
       {children}
       <ToastProvider />
     </>

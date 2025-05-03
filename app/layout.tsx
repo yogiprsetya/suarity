@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={gabarito.variable}>
       <body className="antialiased font-mono">
-        <div className="max-w-5xl w-full mx-auto px-4">
+        <div className="max-w-5xl w-full mx-auto px-4 relative">
           <ThemeProvider attribute="class" defaultTheme="light">
             <SWRProvider>
               <NextAuthProvider>{children}</NextAuthProvider>
