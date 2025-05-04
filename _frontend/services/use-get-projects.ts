@@ -6,8 +6,7 @@ import { useDebounce } from 'use-debounce';
 export const useGetProjects = () => {
   const { data, isLoading } = useSWR<HttpRequest<ProjectsType[]>, Error>('projects', {
     revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-    revalidateOnMount: false
+    revalidateOnReconnect: false
   });
 
   const [debounceLoading] = useDebounce(isLoading, 1000);

@@ -19,7 +19,7 @@
     ],
     "paths": {
       "~/*": ["./*"],
-      "api-lib/*": ["./app/api/_lib/*"],
+      "~/backend/*": ["./_backend/*"],
       "~/components/*": ["./_frontend/components/*"],
       "~/hooks/*": ["./_frontend/hooks/*"],
       "~/services/*": ["./_frontend/services/*"],      
