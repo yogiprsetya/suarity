@@ -19,6 +19,7 @@ import { Input } from '~/components/ui/input';
 import { Textarea } from '~/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
 import { Label } from '~/components/ui/label';
+import { User } from '~/model/types/users';
 
 const schema = createInsertSchema(users).pick({
   name: true,
@@ -27,9 +28,15 @@ const schema = createInsertSchema(users).pick({
   type: true
 });
 
-export const AppForm = () => {
+export const AppForm = ({ data }: { data: User }) => {
   const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema)
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: data.name,
+      bio: data.bio,
+      username: data.username,
+      type: data.type
+    }
   });
 
   const onSubmit = (values: z.infer<typeof schema>) => {
