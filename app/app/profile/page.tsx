@@ -10,7 +10,7 @@ const fetchUser = async () => {
 const ProfileSettingPage = async () => {
   const { data } = await fetchUser();
 
-  return <AppForm data={data} />;
+  return <AppForm props={data} />;
 };
 
 export default ProfileSettingPage;

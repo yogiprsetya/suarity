@@ -1,14 +1,14 @@
 'use client';
 
 import { Text } from '~/components/ui/text';
-import { useGetProfile } from '~/services/use-get-profile';
+import { useProfile } from '~/_frontend/services/use-profile';
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar';
 import { generateInitials } from '~/utils/initial-text';
 import { Button } from '~/components/ui/button';
 import { Plus } from 'lucide-react';
 
 export const AppNavbar = () => {
-  const { data } = useGetProfile();
+  const { data } = useProfile();
 
   return (
     <header className="flex h-16 items-center justify-between shadow px-6 mt-2 rounded bg-background">

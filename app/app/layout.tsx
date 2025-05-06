@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { AppNavbar } from './app-navbar';
-import { UnverifiedProfile } from './app-unverified-profile';
 
 const ToastProvider = dynamic(
   () => import('~/components/layout/ToastProvider').then((mod) => mod.ToastProvider),
+  { ssr: false }
+);
+
+const UnverifiedProfile = dynamic(
+  () => import('./app-unverified-profile').then((mod) => mod.UnverifiedProfile),
   { ssr: false }
 );
 

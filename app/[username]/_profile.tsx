@@ -1,7 +1,7 @@
 'use client';
 
 import { Text } from '~/components/ui/text';
-import { useGetProfile } from '~/services/use-get-profile';
+import { useGetProfile } from '~/_frontend/services/use-profile';
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar';
 import { generateInitials } from '~/utils/initial-text';
 import { Plus } from 'lucide-react';

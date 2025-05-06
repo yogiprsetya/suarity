@@ -2,18 +2,18 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { Loading } from '~/_frontend/components/ui/loading';
-import { useGetProfile } from '~/frontend/services/use-get-profile';
+import { Loading } from '~/frontend/components/ui/loading';
+import { useProfile } from '~/frontend/services/use-profile';
 
 export const UnverifiedProfile = () => {
-  const { data, isLoading } = useGetProfile();
+  const { data, isLoading } = useProfile();
   const router = useRouter();
 
   useEffect(() => {
-    if (!data?.data.username) {
+    if (!isLoading && !data?.data?.username) {
       router.push('/app/profile');
     }
-  }, [data?.data.username, router]);
+  }, [data?.data, isLoading, router]);
 
   if (isLoading) {
     return (

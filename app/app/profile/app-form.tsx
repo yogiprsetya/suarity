@@ -20,6 +20,7 @@ import { Textarea } from '~/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
 import { Label } from '~/components/ui/label';
 import { User } from '~/model/types/users';
+import { useProfile } from '~/_frontend/services/use-profile';
 
 const schema = createInsertSchema(users)
   .pick({
@@ -35,21 +36,23 @@ const schema = createInsertSchema(users)
     bio: z.string().min(1).max(250)
   });
 
-export const AppForm = ({ data }: { data: User }) => {
+export const AppForm = ({ props }: { props: User }) => {
+  const { isLoading, isCreating, updateProfile } = useProfile();
+
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      name: data.name,
-      bio: data.bio,
-      username: data.username,
-      type: data.type
+      name: props.name,
+      bio: props.bio,
+      username: props.username,
+      type: props.type
     }
   });
 
   const onSubmit = (values: z.infer<typeof schema>) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    updateProfile(values);
   };
 
   return (
@@ -144,8 +147,8 @@ export const AppForm = ({ data }: { data: User }) => {
           )}
         />
 
-        <Button type="submit" className="mx-auto flex">
-          Save & Publish
+        <Button type="submit" className="mx-auto flex" disabled={isLoading || isCreating}>
+          {isLoading || isCreating ? 'Please Wait ...' : 'Save & Publish'}
         </Button>
       </form>
     </Form>
