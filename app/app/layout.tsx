@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { AppNavbar } from './app-navbar';
+import { UnverifiedProfile } from './app-unverified-profile';
 
 const ToastProvider = dynamic(
   () => import('~/components/layout/ToastProvider').then((mod) => mod.ToastProvider),
@@ -20,6 +21,7 @@ export default function RootLayout({
     <>
       <AppNavbar />
       {children}
+      <UnverifiedProfile />
       <ToastProvider />
     </>
   );

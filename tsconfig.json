@@ -20,6 +20,7 @@
     "paths": {
       "~/*": ["./*"],
       "~/backend/*": ["./_backend/*"],
+      "~/frontend/*": ["./_frontend/*"],
       "~/components/*": ["./_frontend/components/*"],
       "~/hooks/*": ["./_frontend/hooks/*"],
       "~/services/*": ["./_frontend/services/*"],      

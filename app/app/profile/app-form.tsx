@@ -21,12 +21,19 @@ import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
 import { Label } from '~/components/ui/label';
 import { User } from '~/model/types/users';
 
-const schema = createInsertSchema(users).pick({
-  name: true,
-  bio: true,
-  username: true,
-  type: true
-});
+const schema = createInsertSchema(users)
+  .pick({
+    name: true,
+    type: true
+  })
+  .extend({
+    username: z
+      .string()
+      .min(3)
+      .max(20)
+      .regex(/^[a-zA-Z0-9-_]+$/),
+    bio: z.string().min(1).max(250)
+  });
 
 export const AppForm = ({ data }: { data: User }) => {
   const form = useForm<z.infer<typeof schema>>({
