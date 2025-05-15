@@ -1,14 +1,19 @@
 'use client';
 
-import { User, Settings, Gem } from 'lucide-react';
+import { User, Settings, Gem, CircleUserRound } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '~/components/ui/sidebar';
 
 const items = [
   {
     title: 'Profile Info',
-    url: '/app/profile',
+    url: '/app/setting',
     icon: User
+  },
+  {
+    title: 'Avatar',
+    url: '/app/setting/avatar',
+    icon: CircleUserRound
   },
   {
     title: 'Plans',
@@ -16,8 +21,8 @@ const items = [
     icon: Gem
   },
   {
-    title: 'Settings',
-    url: '/app/settings',
+    title: 'Account',
+    url: '/app/account',
     icon: Settings
   }
 ];

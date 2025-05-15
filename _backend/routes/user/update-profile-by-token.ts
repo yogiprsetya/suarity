@@ -13,7 +13,7 @@ const createReqSchema = createUpdateSchema(users).pick({
   name: true,
   email: true,
   bio: true,
-  image: true
+  type: true
 });
 
 export const updateProfileByToken = async (req: NextRequest) => {
@@ -33,9 +33,10 @@ export const updateProfileByToken = async (req: NextRequest) => {
           name: data.name,
           email: data.email,
           bio: data.bio,
-          image: data.image
+          type: data.type
         })
-        .where(eq(users.id, session.id));
+        .where(eq(users.id, session.id))
+        .returning();
 
       return handleSuccessResponse(result[0]);
     }

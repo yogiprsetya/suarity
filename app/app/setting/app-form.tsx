@@ -49,11 +49,11 @@ export const AppForm = ({ props }: { props: User }) => {
     }
   });
 
-  const onSubmit = (values: z.infer<typeof schema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    updateProfile(values);
-  };
+  const {
+    formState: { isDirty }
+  } = form;
+
+  const onSubmit = (values: z.infer<typeof schema>) => updateProfile(values);
 
   return (
     <Form {...form}>
@@ -147,7 +147,11 @@ export const AppForm = ({ props }: { props: User }) => {
           )}
         />
 
-        <Button type="submit" className="mx-auto flex" disabled={isLoading || isCreating}>
+        <Button
+          type="submit"
+          className="mx-auto flex"
+          disabled={isLoading || isCreating || !isDirty}
+        >
           {isLoading || isCreating ? 'Please Wait ...' : 'Save & Publish'}
         </Button>
       </form>
