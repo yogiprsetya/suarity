@@ -7,6 +7,12 @@ import { User } from '~/model/types/users';
 import { errorHandler } from '~/utils/error-handler';
 import { useToast } from '../hooks/useToast';
 
+type FileRes = {
+  id: string;
+  path: string;
+  fullPath: string;
+};
+
 export const useProfile = () => {
   const [isCreating, setIsCreating] = useState(false);
 
@@ -42,10 +48,35 @@ export const useProfile = () => {
     [mutate, toast]
   );
 
+  const changeAvatar = useCallback(
+    (file: File) => {
+      setIsCreating(true);
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      httpClient
+        .post<HttpRequest<FileRes>>('change-avatar', formData)
+        .then(() => {
+          mutate();
+
+          toast({
+            title: 'Avatar updated',
+            description: 'Your avatar has been updated successfully.',
+            variant: 'default'
+          });
+        })
+        .catch(errorHandler)
+        .finally(() => setIsCreating(false));
+    },
+    [mutate, toast]
+  );
+
   return {
     data,
     isLoading: debounceLoading,
     isCreating,
-    updateProfile
+    updateProfile,
+    changeAvatar
   };
 };

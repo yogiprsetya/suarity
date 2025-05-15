@@ -26,7 +26,7 @@ export const AppNavbar = () => {
 
       <div className="flex items-center">
         <Button asChild variant="link">
-          <a href="/app/profile">Profile</a>
+          <a href="/app/setting">Setting</a>
         </Button>
 
         <Button size="sm">

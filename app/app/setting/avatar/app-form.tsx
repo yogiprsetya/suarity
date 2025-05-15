@@ -6,7 +6,8 @@ import { Button } from '~/frontend/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar';
 import { generateInitials } from '~/utils/initial-text';
 import { Input } from '~/frontend/components/ui/input';
-import { useToast } from '~/_frontend/hooks/useToast';
+import { useToast } from '~/frontend/hooks/useToast';
+import { useProfile } from '~/frontend/services/use-profile';
 
 type Props = {
   image: string;
@@ -18,6 +19,7 @@ const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
 
 export const ChangeAvatar: FC<Props> = ({ image, name }) => {
   const { toast } = useToast();
+  const { changeAvatar, isCreating, isLoading } = useProfile();
 
   return (
     <div className="flex items-center gap-4">
@@ -30,6 +32,7 @@ export const ChangeAvatar: FC<Props> = ({ image, name }) => {
         type="file"
         accept="image/jpeg,image/jpg,image/png"
         className="hidden"
+        multiple={false}
         onChange={(e) => {
           const file = e.target.files?.[0];
 
@@ -55,22 +58,15 @@ export const ChangeAvatar: FC<Props> = ({ image, name }) => {
             return;
           }
 
-          if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              // Handle the base64 image data here
-              console.log(reader.result);
-            };
-            reader.readAsDataURL(file);
-          }
+          if (file) changeAvatar(file);
         }}
         id="avatar-upload"
       />
 
-      <Button asChild variant="outline" size="sm">
+      <Button asChild variant="outline" size="sm" disabled={isCreating || isLoading}>
         <label htmlFor="avatar-upload" className="cursor-pointer">
           <UploadIcon className="mr-2" />
-          Change
+          {isCreating ? 'Waiting ...' : 'Change'}
         </label>
       </Button>
     </div>

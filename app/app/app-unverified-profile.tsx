@@ -11,7 +11,7 @@ export const UnverifiedProfile = () => {
 
   useEffect(() => {
     if (!isLoading && !data?.data?.username) {
-      router.push('/app/profile');
+      router.push('/app/setting');
     }
   }, [data?.data, isLoading, router]);
 
