@@ -33,6 +33,7 @@ export const ChangeAvatar: FC<Props> = ({ image, name }) => {
         accept="image/jpeg,image/jpg,image/png"
         className="hidden"
         multiple={false}
+        readOnly={isCreating || isLoading}
         onChange={(e) => {
           const file = e.target.files?.[0];
 

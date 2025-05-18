@@ -6,6 +6,8 @@ import { HttpRequest } from '~/model/types/http';
 import { User } from '~/model/types/users';
 import { errorHandler } from '~/utils/error-handler';
 import { useToast } from '../hooks/useToast';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 type FileRes = {
   id: string;
@@ -15,6 +17,8 @@ type FileRes = {
 
 export const useProfile = () => {
   const [isCreating, setIsCreating] = useState(false);
+  const { update: updateSession } = useSession();
+  const router = useRouter();
 
   const { data, isLoading, mutate } = useSWRImmutable<HttpRequest<User>, Error>('me');
 
@@ -56,9 +60,15 @@ export const useProfile = () => {
       formData.append('file', file);
 
       httpClient
-        .post<HttpRequest<FileRes>>('change-avatar', formData)
+        .post<HttpRequest<FileRes>>('change-avatar', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
         .then(() => {
           mutate();
+          updateSession();
+          router.refresh();
 
           toast({
             title: 'Avatar updated',
@@ -69,7 +79,7 @@ export const useProfile = () => {
         .catch(errorHandler)
         .finally(() => setIsCreating(false));
     },
-    [mutate, toast]
+    [mutate, router, toast, updateSession]
   );
 
   return {

@@ -1,4 +1,4 @@
-import { requireUserAuth } from '~/_backend/lib/protect-route';
+import { requireUserAuth } from '~/backend/lib/protect-route';
 import { db } from '~/config/db';
 import { users } from '~/model/schema/users';
 import { NextRequest } from 'next/server';
