@@ -20,7 +20,7 @@ import { Textarea } from '~/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group';
 import { Label } from '~/components/ui/label';
 import { User } from '~/model/types/users';
-import { useProfile } from '~/_frontend/services/use-profile';
+import { useProfile } from '~/frontend/services/use-profile';
 
 const schema = createInsertSchema(users)
   .pick({

@@ -1,7 +1,7 @@
 'use client';
 
 import { Text } from '~/components/ui/text';
-import { useProfile } from '~/_frontend/services/use-profile';
+import { useProfile } from '~/frontend/services/use-profile';
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar';
 import { generateInitials } from '~/utils/initial-text';
 import { Button } from '~/components/ui/button';
